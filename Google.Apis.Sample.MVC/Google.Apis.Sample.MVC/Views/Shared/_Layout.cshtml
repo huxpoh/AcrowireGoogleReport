@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery.ui.datepicker.css" rel="stylesheet" />
+   
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("My TimeReport", "TimeReport", "Home")</li>
+                    <li>@Html.ActionLink("Drive", "DriveAsync", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Google App</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script type="text/javascript">
+        ko.bindingHandlers.datepicker = {
+            init: function (element, valueAccessor, allBindingsAccessor) {
+                var options = allBindingsAccessor().datepickerOptions || {};
+                $(element).datepicker(options);
+
+                //handle the field changing
+                ko.utils.registerEventHandler(element, "change", function () {
+                    var observable = valueAccessor();
+                    observable($(element).datepicker("getDate"));
+                });
+
+                //handle disposal (if KO removes by the template binding)
+                ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                    $(element).datepicker("destroy");
+                });
+            }
+        };
+    </script>
+    @RenderSection("scripts", false)
+</body>
+</html>
