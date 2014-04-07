@@ -24,7 +24,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("My TimeReport", "TimeReport", "Home")</li>
+                    <li>@Html.ActionLink("My TimeReport", "TimeReportView", "Home")</li>
                     <li>@Html.ActionLink("Drive", "DriveAsync", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
@@ -42,6 +42,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/knockout-3.1.0.js"></script>
     <script type="text/javascript">
